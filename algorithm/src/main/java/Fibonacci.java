@@ -1,4 +1,4 @@
-public class Fibanacci {
+public class Fibonacci {
     //O(n^2) 扇出=2
     public static int foo1( int n ){
         if( n < 3 )return n;
