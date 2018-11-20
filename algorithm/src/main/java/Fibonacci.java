@@ -39,10 +39,15 @@ public class Fibonacci {
         return (int)Math.round((c1)*Math.pow((1+c)/2,n) - (c2)*Math.pow((1-c)/2,n));
 
     }
+    public static int foo5(int n){
+        double c = Math.sqrt(5.0);
+        return (int)Math.round((1/c)*Math.pow((1+c)/2,n+1)-(1/c)*Math.pow((1-c)/2,n+1));
+    }
     public static void main(String args[]){
         System.out.println(foo1(13));
         System.out.println(foo2(13));
         System.out.println(foo3(1,2,3,13));
         System.out.println(foo4(13));
+        System.out.println(foo5(13));
     }
 }
