@@ -3,6 +3,8 @@ package usecase.of.zookeeper.configurationmanagement;
 import org.apache.zookeeper.*;
 import usecase.of.zookeeper.barrier.AbstractZooKeeperHelper;
 
+import java.io.IOException;
+
 public class Server2 extends AbstractZooKeeperHelper {
 
 
@@ -14,7 +16,7 @@ public class Server2 extends AbstractZooKeeperHelper {
                 zk.create(redisHostZnode,"127.0.0.1:6379".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
             }
             redisHost = new String(zk.getData(redisHostZnode,myWatcher,null));
-            System.out.println();
+            System.out.println("Server2 get redisHost:"+redisHost);
         } catch (KeeperException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
