@@ -16,10 +16,11 @@ public class ClientTask extends AbstractZooKeeperHelper {
                 //start to computation
                 ClientTask.this.run();
                 try {
+                    //reset watcher for exit root /Barrier
+                    zk.getChildren(rootBarrier,exitBarrierZnodeWatcher);
                     //delete ephem after finish computation
                     zk.delete(rootBarrier.concat("/").concat(clientId),-1);
-                    //
-                    zk.getChildren(rootBarrier,exitBarrierZnodeWatcher);
+
                 } catch (InterruptedException|KeeperException e) {
                     e.printStackTrace();
                 }
