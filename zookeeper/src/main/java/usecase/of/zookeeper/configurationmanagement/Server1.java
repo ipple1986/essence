@@ -1,7 +1,7 @@
 package usecase.of.zookeeper.configurationmanagement;
 
 import org.apache.zookeeper.*;
-import usecase.of.zookeeper.barrier.AbstractZooKeeperHelper;
+import usecase.of.zookeeper.AbstractZooKeeperHelper;
 
 import java.io.IOException;
 
