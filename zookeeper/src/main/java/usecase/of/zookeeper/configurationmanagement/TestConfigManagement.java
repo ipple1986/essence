@@ -7,6 +7,8 @@ public class TestConfigManagement {
     public static void main(String ... args){
         new Server1();
         new Server2();
+
+        //donn't exit the jvm
         try {
             System.in.read();
         } catch (IOException e) {

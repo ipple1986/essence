@@ -4,7 +4,7 @@ import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 
-public class DisttributedAddTask extends AbstractZooKeeperHelper implements Runnable, Watcher {
+public class DisttributedAddTask extends AbstractZooKeeperHelper implements Watcher {
 
 
     public DisttributedAddTask(){
@@ -18,19 +18,13 @@ public class DisttributedAddTask extends AbstractZooKeeperHelper implements Runn
         }
     }
 
-    @Override
-    public void run() {
-        while(isBarrier){
-            System.out.println("Add Operator is watting ");
-        }
-        System.out.println("add operator: 1+2="+(1+2));
-        close();
-    }
 
     @Override
     public void process(WatchedEvent watchedEvent) {
         if(watchedEvent.getType()== Event.EventType.NodeDeleted){
-            isBarrier = Boolean.FALSE;
+
+            System.out.println("add operator: 1+2="+(1+2));
+            close();
         }
     }
 }
