@@ -19,15 +19,16 @@ public class DisttributedDivideTask  extends  AbstractZooKeeperHelper implements
 
     @Override
     public void run() {
-        while(!isBarrier){
-            System.out.println("add operator: 10/2="+(10/2));
+        while(isBarrier){
+            System.out.println("Divide Operator is watting ");
         }
+        System.out.println("divide operator: 1+2="+(1+2));
         close();
     }
 
     @Override
     public void process(WatchedEvent watchedEvent) {
-        if(watchedEvent.getType()== Watcher.Event.EventType.NodeDeleted){
+        if(watchedEvent.getType()== Event.EventType.NodeDeleted){
             isBarrier = Boolean.FALSE;
         }
     }

@@ -55,11 +55,11 @@ public class ClusterClient implements Watcher, Runnable {
         }
     }
     public static void main(String[] args) {
-        if (args.length != 1) {
+        /*if (args.length != 1) {
             System.err.println("Usage: ClusterClient <Host:Port>");
             System.exit(0);
-        }
-        String hostPort = args[0];
+        }*/
+        String hostPort = "localhost:2181";//args[0];
         //Get the process id
         String name = ManagementFactory.getRuntimeMXBean().getName();
         int index = name.indexOf('@');

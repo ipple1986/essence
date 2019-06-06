@@ -20,9 +20,10 @@ public class DisttributedAddTask extends AbstractZooKeeperHelper implements Runn
 
     @Override
     public void run() {
-        while(!isBarrier){
-            System.out.println("add operator: 1+2="+(1+2));
+        while(isBarrier){
+            System.out.println("Add Operator is watting ");
         }
+        System.out.println("add operator: 1+2="+(1+2));
         close();
     }
 
