@@ -66,7 +66,7 @@ public class ClientTask extends AbstractZooKeeperHelper {
                             zk.delete(rootBarrier,-1);
                             System.out.println("clientid:"+clientId+" delete /Barrier");
                         }
-                    }else{//
+                    }else{// has any clientTask under /Barrier,if exceed the MAX_TASK_2_START_COMPUTATION size
                         createReadyZnodeWhenReachMaxSize();
                     }
                 } catch (KeeperException|InterruptedException e) {
@@ -86,13 +86,13 @@ public class ClientTask extends AbstractZooKeeperHelper {
             if(zk.exists(rootBarrier,false)==null){
                 zk.create(rootBarrier,"".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
             }
-            //judge is to start computation,/Barrier/Ready is exists
+            //judge is to start computation,/Barrier/Ready is exists//listener /Barrier/Ready to create
             zk.exists(rootBarrier.concat("/").concat("Ready"),startComputationWatcher);
 
-            //create epheml znode under /Barrier
+            //create epheml znode under /Barrier,LIKE /Barrier/clientId
             zk.create(rootBarrier.concat("/").concat(clientId),clientId.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
 
-            //judge is the time to set /Barrier/Ready
+            //judge is the time to create /Barrier/Ready znode,if exists delete before create the new one.
             createReadyZnodeWhenReachMaxSize();
 
         } catch (KeeperException|InterruptedException e) {

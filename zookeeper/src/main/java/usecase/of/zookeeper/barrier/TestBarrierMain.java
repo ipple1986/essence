@@ -1,5 +1,7 @@
 package usecase.of.zookeeper.barrier;
 
+        import usecase.of.zookeeper.ZKUtils;
+
         import java.io.IOException;
 
 public class TestBarrierMain {
@@ -8,11 +10,7 @@ public class TestBarrierMain {
         new DisttributedAddTask();
         new DisttributedDivideTask();
 
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ZKUtils.withoutExitJVM();
 
 /*        new Thread(new DisttributedAddTaskRunnable()).start();
         new Thread(new DisttributedDivideTaskRunnable()).start();*/

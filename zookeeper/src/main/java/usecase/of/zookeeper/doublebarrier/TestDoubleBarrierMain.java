@@ -1,29 +1,23 @@
 package usecase.of.zookeeper.doublebarrier;
 
-import java.io.IOException;
+import usecase.of.zookeeper.ZKUtils;
 
 public class TestDoubleBarrierMain {
     public static void main(String ...args){
+
+        //create first 4 task
         for(int i = 0;i<4;i++){
             new ClientTask(""+i);
         }
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        //sleep 5 seconds
+        ZKUtils.threadSleep(5000);
 
-
+        //start another 6 task
         new ClientTask("4");
-
-
         for(int i = 5;i<11;i++){
             new ClientTask(""+i);
         }
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        ZKUtils.withoutExitJVM();
     }
 }

@@ -1,5 +1,7 @@
 package usecase.of.zookeeper.configurationmanagement;
 
+import usecase.of.zookeeper.ZKUtils;
+
 import java.io.IOException;
 
 public class TestConfigManagement {
@@ -9,11 +11,7 @@ public class TestConfigManagement {
         new Server2();
 
         //donn't exit the jvm
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ZKUtils.withoutExitJVM();
     }
 }
 /*
