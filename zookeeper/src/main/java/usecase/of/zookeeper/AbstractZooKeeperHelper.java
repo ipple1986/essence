@@ -9,13 +9,14 @@ public abstract class AbstractZooKeeperHelper {
 
     protected static String conntectStr = "localhost:2181";
     static protected  ZooKeeper zk;
-    public AbstractZooKeeperHelper(){
+    static{
         try {
             zk = new ZooKeeper(conntectStr,2000,null);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    public AbstractZooKeeperHelper(){}
     protected  static synchronized void close(){
         try {
             zk.close();
