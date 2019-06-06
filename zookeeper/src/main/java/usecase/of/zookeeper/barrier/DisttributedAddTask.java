@@ -3,10 +3,11 @@ package usecase.of.zookeeper.barrier;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
+import usecase.of.zookeeper.AbstractZooKeeperHelper;
 
 public class DisttributedAddTask extends AbstractZooKeeperHelper implements Watcher {
 
-
+    static String barrierZnode = "/zk_barrier";
     public DisttributedAddTask(){
         super();
         try {

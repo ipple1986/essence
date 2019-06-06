@@ -2,10 +2,11 @@ package usecase.of.zookeeper.barrier;
 
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooDefs;
+import usecase.of.zookeeper.AbstractZooKeeperHelper;
 
-public class CreateOrDeleteBarrierZnode extends  AbstractZooKeeperHelper{
+public class CreateOrDeleteBarrierZnode extends AbstractZooKeeperHelper {
 
-
+    static String barrierZnode = "/zk_barrier";
     static {
         new CreateOrDeleteBarrierZnode();
     }

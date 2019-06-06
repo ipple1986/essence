@@ -1,6 +1,6 @@
 package usecase.of.zookeeper.barrier;
 
-import java.io.IOException;
+        import java.io.IOException;
 
 public class TestBarrierMain {
 
