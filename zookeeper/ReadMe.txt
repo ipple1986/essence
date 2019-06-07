@@ -1,3 +1,5 @@
+Apache ZooKeeper Essengtial
+
 A.ZK速成课
 A.1下载ZK
 wget http://xxx/zookeeper-3.4.6.tar.gz
@@ -303,6 +305,119 @@ D.ZK通用场景
 组成员管理
 两阶段提交
 服务发现
+
 E.管理ZK
+最小配置
+clientPort
+dataDir
+tickTime
+存储配置
+dataLogDir 事务日志存储
+preAllocSize 预分配置事务日志文件块大小（64M）
+snapCount 连续两次快照之间的事务数，快照文件中事务数，超过新建快照（10000）
+traceFile 记录请求的日志追踪文件，for调试，但影响性能
+fsync.warningthresholdms ms单位，定义flush sync"写操作"到事务日志的最长时间，超时发出调试日志
+autopurge.snapRetainCount 快照和事务日志保留数量（3）
+autopurge.purgeInterval 自动清理的时间间隔（0） 0：disable,1+ 单位小时
+syncEnabled 允许observer同步快照与事务日志（true）,重启时减少observer的恢复时间
+
+网络配置
+globalOutstandingLimit 请求频度超过zk处理能力时，起减缓ZK压力作用(1000)
+maxClientCnxns 定义一个客户最大socket并发连接数
+clientPortAddress 定义接口与端口给客户
+minSessionTimeout 定义最小会话超时时间,实际根据客户端连接参数定（2*tickTime)
+maxSeesionTimeout 定义最大会话超时时间,实际根据客户端连接参数定（20*tickTime)
+
+服务器整体Essemble配置
+electionAlg 选举算法 0基本UDP 1未授权UDP 2授权UPD 3 TCP fast选主
+initLimit follower连接到leader的超时时间
+syncLimt follower同步leader的超时时间
+leaderServes 配置leader是否接受客户端连接
+cnxTimeout 选举过程的连接超时时间（5s）
+server.x=[host]:[follower2LeaderPort]:[electionPort] 选举端口只有electionAlg = 1,2,3
+
+配置法定人数（Quarums)
+group.groupId=sid1[:sid2]
+weight.groupId=weightValue //weightValue 1 default
+
+Znode的限定与授权
+create /quota_example ""
+setquota -n 2 /quota_example
+listquota /quota_example
+create /quota_example/child1 ""
+create /quota_example/child2 ""
+create /quota_example/child3 "" //warning
+ls /quota_example
+delquota /quota_example
+listquota /quota_example
+授权
+zookeeper.DigestAuthenticationProvider.superDigest
+ org.
+apache.zookeeper.server.auth.DigestAuthenticationProvider（super:<password>）
+
+管理ZK实例
+四字母单词+JMX(JAVA Management Extension jconsole)
+telnet or nc 向服务器发出四字母命令，echo conf | nc host port
+conf 服务器配置项
+cons 所有连接服务器的连接/会话详情
+crst 重置所有连接/会话的统计信息
+dump 在leader节点导出会话与临时节点信息
+envi 环境参数信息
+ruok 向服务端发出，返回imok
+stat 服务器（包括已连接上的客户端）当前状态信息
+srvr 服务器当前状态信息，不显示已连接客户信息
+wchs/wchc/wchp 简单/带会话连接/带znode路径 的 监听器信息
+mntr 显示用于监控集群健康的变量列表
+
+
 F.使用Curator装饰ZK
+CuratorClient
+public void myCuratorClient() throws Exception{
+    CuratorZookeeperClient client = new CuratorZookeeperClient(server.getConnectString(),10000, 10000, null,new RetryOneTime(1));
+    client.start();
+    try{
+        client.blockUntilConnectedOrTimedOut();
+        String path = client.getZooKeeper().create("/test_znode","".getBytes(),ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode.PERSISTENT);
+    }finally{
+        client.close();
+    }
+}
+CuratorFramework
+public void myCuratorFrameworkClient()throws Exception{
+    CuratorFramework client = CuratorFrameworkFactory.newClient(server.getConnectString(),new RetryOneTime(1));
+    client.start();
+    try{
+        String path = client.create().withMode(CreateMode.PERSISTENT).forPath("/test_znode", "".getBytes());
+    }finally{
+        client.close();
+    }
+}
+
+// namespace from builder ways to buid client
+CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder();
+CuratorFramework client = builder.connectString(server.getConnectString())
+        .namespace("MyApp")
+        .retryPolicy(newRetryOneTime(1))
+        .build();
+client.create().forPath("/test_znode", data);
+Curator recipes
+选主
+锁（共享锁，共享可重入锁，共享可重入读/写锁，共享信号量，多条件共享锁）
+屏障（单/双）
+原子计数器（原子整型，长整型，原子值）
+缓存
+队列（简单分布式队列，分布式队列，分布式ID队列 ，分布式优先队列 ，分布式延迟队列）
+节点 支持临时节点的持久化
+
+Curator Utils
+Test server/Test cluster 提供本地或集群测试环境
+ZKPaths 提供静态方法操作Znode Path
+EnsurePath 确保znode path在使用之间存在
+BlockingQuereConsumer 类似BlokingQueue,一个消费队列
+Reaper 清理没有子节点与数据的节点
+
 G.ZK实战
+使用场景
+Apache Bookeeper/Hadoop/HBase/Helix/Nova
+支撑机构
+Yahoo/Facebook/eBay/Twitter/Netflix/Zynga/Nutanix/Vmware vSphere Storage Appliance
