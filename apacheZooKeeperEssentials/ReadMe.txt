@@ -370,6 +370,10 @@ wchs/wchc/wchp 简单/带会话连接/带znode路径 的 监听器信息
 mntr 显示用于监控集群健康的变量列表
 
 
+ps: add follower config to startup scrpits
+-Dzookeeper.4lw.commands.whitelist=*
+
+
 F.使用Curator装饰ZK
 CuratorClient
 public void myCuratorClient() throws Exception{
