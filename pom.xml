@@ -11,7 +11,7 @@
     <modules>
         <module>algorithm</module>
         <module>leetcode</module>
-        <module>zookeeper</module>
+        <module>components</module>
     </modules>
 
 

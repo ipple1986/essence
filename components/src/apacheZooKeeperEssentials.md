@@ -447,7 +447,7 @@ CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder();
 CuratorFramework client = builder.connectString(server.getConnectString())
         .namespace("MyApp")
         .retryPolicy(newRetryOneTime(1))
-        .build();
+        .nettyInAction.EchoServer.build();
 client.create().forPath("/test_znode", data);
 ```
 
