@@ -1,0 +1,53 @@
+spring:
+  profiles:
+    active: development
+  main:
+    show-banner: true
+#关闭thymeleaf缓存
+  thymeleaf:
+        cache: false
+amazon:
+  associate-Id: abc
+---
+spring:
+  profiles: development
+  datasource:
+    url: jdbc:h2:mem:readinglist;DB_CLOSE_ON_EXIT=FALSE
+    username: dbuser
+    password: dbpass
+    driver-class-name: org.h2.Driver
+logging:
+  path: /var/logs/
+  file: readinglist.log
+  level:
+    root: DEBUG
+  config: classpath:logback.xml
+  org.springframework.security: DEBUG
+---
+spring:
+  profiles: production
+  application:
+    admin:
+      enabled: true
+  #数据源配置
+  datasource:
+    url: jdbc:h2:mem:readinglist;DB_CLOSE_ON_EXIT=FALSE
+    username: dbuser
+    password: dbpass
+    driver-class-name: org.h2.Driver
+#日志配置
+logging:
+  path: /var/logs/
+  file: readinglist.log
+  level:
+    root: WARN
+  config: classpath:logback.xml
+  org.springframework.security: DEBUG
+#https配置
+server:
+  port: 8443
+  ssl:
+    #key-store: file:///D:\github\jim\spring_microservice\spring_boot\springboot_in_action\readinglist\src\main\resources\mykeys.jks
+    key-store: classpath:mykeys.jks
+    key-store-password: letmein
+    key-password: letmein

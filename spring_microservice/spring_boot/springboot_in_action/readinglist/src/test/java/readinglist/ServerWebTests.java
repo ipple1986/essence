@@ -15,15 +15,15 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 //@WebIntegrationTest(randomPort=true)
 public class ServerWebTests {
     private static ChromeDriver browser;
     @Value("${local.server.port}")
     private int port;
 
-    @BeforeClass
+    //@BeforeClass
     public static void openBrowser() {
         String chromebin = "C:/xxx/chrome.exe";//chrome启动文件路径
         String chromedriver = "E:/xxx/chromedriver.exe";//chromedriver文件路径
@@ -33,12 +33,12 @@ public class ServerWebTests {
         browser = new ChromeDriver();
         browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
-    @AfterClass
+    //@AfterClass
     public static void closeBrowser() {
         browser.quit();
     }
 
-    @Test
+    //@Test
     public void addBookToEmptyList() {
         
         String baseUrl = "http://localhost:" + port;

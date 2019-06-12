@@ -69,20 +69,20 @@ public class MockMvcWebTests {
     }
     //非安全测试 结束
     //安全测试
-    @Test
+/*    @Test
     public void homePage_unauthenticatedUser0() throws Exception {
         mockMvc.perform(get("/")).andExpect(status().is3xxRedirection())
                 .andExpect(header().string("Location","http://localhost/login"));
-    }
+    }*/
     //使用WithMockUser
-    @Test
+/*    @Test
     @WithMockUser(username="craig",password="password",roles="READER")
     public void homePage_authenticatedUser1() throws Exception {
         mockMvc.perform(get("/readingList")).andExpect(status().is2xxSuccessful())
                 .andExpect(header().string("Location",not("http://localhost/login")));
-    }
+    }*/
     //使用WithUserDetails
-    @Test
+    /*@Test
     @WithUserDetails("craig")//声明craig,当执行些方法时，会被 加入安全上下文中
     public void homePage_authenticatedUser2() throws Exception {
         Reader expectedReader = new Reader();
@@ -95,5 +95,5 @@ public class MockMvcWebTests {
                 .andExpect(view().name("readingList"))
                 .andExpect(model().attribute("reader",samePropertyValuesAs(expectedReader)))
                 .andExpect(model().attribute("books", hasSize(0)));
-    }
+    }*/
 }

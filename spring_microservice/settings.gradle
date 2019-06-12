@@ -6,5 +6,6 @@ pluginManagement {
 
 rootProject.name = 'spring_microservice'
 include 'spring_boot:springboot_in_action:readinglist'
-
+include "spring_boot:springboot_demos"
+include "spring_cloud"
 
