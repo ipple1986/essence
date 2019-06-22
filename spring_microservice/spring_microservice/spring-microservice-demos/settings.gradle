@@ -1,0 +1,2 @@
+rootProject.name = "spring_microservice_demos"
+include "user-service","config-server-service"

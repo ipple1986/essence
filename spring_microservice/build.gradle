@@ -3,22 +3,25 @@ plugins {
     id 'org.springframework.boot' version '2.1.5.RELEASE'
 }
 subprojects {
-    apply plugin: 'java'//应用java插件
-    apply plugin: 'org.springframework.boot'//应用spring-boot
-    apply plugin: 'io.spring.dependency-management'//应用依赖管理
-    sourceCompatibility = '1.8'
-    repositories {
-        mavenCentral()
-        mavenLocal()
-        jcenter()
+    if(project.getBuildFile().exists()){
+        apply plugin: 'java'//应用java插件
+        apply plugin: 'org.springframework.boot'//应用spring-boot
+        apply plugin: 'io.spring.dependency-management'//应用依赖管理
+        sourceCompatibility = '1.8'
+        repositories {
+            mavenCentral()
+            mavenLocal()
+            jcenter()
+        }
+        dependencies{
+            testImplementation "org.springframework.boot:spring-boot-starter-test"
+            testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc:2.0.3.RELEASE"
+        }
     }
-    dependencies{
-        testImplementation "org.springframework.boot:spring-boot-starter-test"
-        testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc:2.0.3.RELEASE"
-    }
+
 }
 //声明一些空包不产生jar
-project(":spring_boot"){
+/*project(":spring_boot"){
     jar { enabled = false }
     bootJar { enabled = false }
 }
@@ -33,5 +36,5 @@ project(":spring_boot:springboot_in_action"){
 project(":spring_boot:springboot_demos"){
     jar { enabled = false }
     bootJar { enabled = false }
-}
+}*/
 

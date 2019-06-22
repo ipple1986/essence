@@ -1,0 +1,7 @@
+dbname: default-db
+spring:
+  datasource:
+    url: jdbc:h2:file:~/readinglist;AUTO_SERVER=TRUE
+    username: dbuser # dbpass
+    password: "{cipher}96490261367abfca52f1c98f1d766ceb280c20ea9485208da40f6c965bf026e1"
+    driver-class-name: org.h2.Driver

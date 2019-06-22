@@ -1,0 +1,8 @@
+# https://docs.spring.io/spring-boot/docs/2.1.5.RELEASE/reference/htmlsingle/
+# management.endpoints.enabled-by-default=false
+# management.endpoint.info.enabled=true
+# management.endpoints.web.exposure.include=*
+# management.endpoints.web.exposure.exclude=env,beans
+
+# https://cloud.spring.io/spring-cloud-static/Greenwich.SR1/single/spring-cloud.html
+# 可完全不配置，读取后端config-server的配置

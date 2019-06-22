@@ -1,0 +1,18 @@
+dbname: dev-db
+# docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql
+# create database readinglist;
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.1.128:33060/readinglist
+    username: root # root
+    password: "{cipher}6c8504a6c0ee2351cd3d35e43dc3b26dd850a296d9020521d91300572b152fda"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    max-idle: 10
+    max-wait: 10000
+    min-idle: 5
+    initial-size: 5
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL5Dialect

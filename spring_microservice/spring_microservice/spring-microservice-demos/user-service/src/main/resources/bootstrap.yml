@@ -1,0 +1,10 @@
+encrypt.key: abcdefghijklmnopqrstuvwxyz
+spring:
+  application:
+    name: user-service
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:8001
+      #encrypt.key: abcdefghijklmnopqrstuvwxyz
