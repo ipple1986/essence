@@ -8,3 +8,18 @@ personality code
 * Redis Essential
 * Netty In Action
 * Rabbitmq In Action
+
+```puml
+@startuml
+
+package "Classic Collections" #DDDDDD {
+  Object <|-- ArrayList
+}
+
+package net.sourceforge.plantuml {
+  Object <|-- Demo1
+  Demo1 *- Demo2
+}
+
+@enduml
+```
