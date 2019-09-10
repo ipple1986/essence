@@ -9,8 +9,8 @@ personality code
 * Netty In Action
 * Rabbitmq In Action
 
-https://blog.anoff.io/2018-07-31-diagrams-with-plantuml/
-!(http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/ipple1986/jim/master/test.pu)
+[github集成plantuml方式--in Section:GitHub integration](https://blog.anoff.io/2018-07-31-diagrams-with-plantuml/)
+![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/ipple1986/jim/master/test.pu)
 ```puml
 @startuml
 
