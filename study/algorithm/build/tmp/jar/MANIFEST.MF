@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Website: https://blog.csdn.net/avenccssddnn
-Author: Jim.2ha0
-Email: ipple1986@gmail.com
-
