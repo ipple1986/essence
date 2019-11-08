@@ -1,0 +1,12 @@
+apply plugin: "java"
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar{
+    manifest{
+        attributes "Author": "Jim.2ha0"
+        attributes "Website": "https://blog.csdn.net/avenccssddnn"
+        attributes "Email": "ipple1986@gmail.com"
+    }
+}

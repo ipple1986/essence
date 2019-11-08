@@ -1,6 +1,7 @@
+import java.io.File;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executor;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -45,6 +46,8 @@ public class Chapter6_Synchronizers {
     }
 
     public static void main(String ...args){
-        testCountDownLatch();
+
+        //testCountDownLatch();
+        System.out.println(File.pathSeparator);
     }
 }

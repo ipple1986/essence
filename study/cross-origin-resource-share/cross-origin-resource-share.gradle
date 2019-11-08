@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
+    }
+}
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
+
+
+// https://github.com/bmuschko/gradle-tomcat-plugin
+dependencies{
+    def tomcatVersion = '7.0.76'
+    tomcat    "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+    providedCompile 'javax.servlet:servlet-api:2.5', 'javax.servlet:jsp-api:2.0'
+}
+
+
+tomcat {
+    httpPort = 8888
+    contextPath = "cors"
+}
+
