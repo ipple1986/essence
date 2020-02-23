@@ -11,7 +11,6 @@ public class ThreadLocalTest {
 
     // test thread's threadLocals equals null
     public static void testNullThreadLocalMap(){
-        TreeMap
 
         new Thread(()-> {
             System.out.println(Thread.currentThread());

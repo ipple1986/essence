@@ -1,0 +1,16 @@
+apply plugin: "java"
+archivesBaseName="jim"
+group "cn.gd.gz.jim"
+version "1.0.1"
+
+allprojects {
+
+    repositories {
+        maven { url 'http://maven.aliyun.com/repository/central' }
+        maven{ url 'http://maven.aliyun.com/repository/jcenter'}
+        maven{ url 'http://maven.aliyun.com/repository/google'}
+        maven{ url 'http://maven.aliyun.com/repository/gradle-plugin'}
+        maven{ url 'http://maven.aliyun.com/repository/spring'}
+        maven{ url 'http://maven.aliyun.com/repository/spring-plugin'}
+    }
+}

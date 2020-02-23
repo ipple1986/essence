@@ -1,0 +1,13 @@
+rootProject.name="study"
+include 'components'
+include "design-parttern"
+include "frontend-technology"
+include "java8"
+include "java-threads-concurrency-utilities"
+include "jenkins"
+include "leetcode"
+include "study"
+
+/*rootProject.children.each {
+    it.buildFileName = it.name + ".gradle"
+}*/
