@@ -1,0 +1,21 @@
+# https://docs.spring.io/spring-boot/docs/2.1.5.RELEASE/reference/htmlsingle/
+# management.endpoints.enabled-by-default=false
+# management.endpoint.info.enabled=true
+# management.endpoints.web.exposure.include=*
+# management.endpoints.web.exposure.exclude=env,beans
+
+# https://cloud.spring.io/spring-cloud-static/Greenwich.SR1/single/spring-cloud.html
+server:
+  port: 8000
+  servlet:
+    context-path: / # web上下文
+management:
+  endpoints:
+    web:
+      base-path: /mgnt # endpoint上下文件
+      path-mapping: # 换别名 health-> healthcheck
+        health: healthcheck
+      exposure:
+        include: "*"
+  server:
+    port: 8000 # endpoint端口

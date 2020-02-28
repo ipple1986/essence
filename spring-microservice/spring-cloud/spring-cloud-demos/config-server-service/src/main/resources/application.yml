@@ -1,0 +1,29 @@
+server:
+  port: 8001
+# FileSystem backend
+#spring.profiles.active: native
+#spring.cloud.config.server.native.searchLocations: file://\D:\github\jim\spring_microservice\spring_microservice\spring-microservice-config-repo\user-service
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ipple1986/spring-microservice-config-repo/
+          searchPaths: '{application}'
+          skipSslValidation: true
+          timeout: 4
+          force-pull: true
+          #username:
+          #password:
+        encrypt:
+          enabled: false # 开启时encrypt.key设置在bootstrap.xml里,同时开，同时关
+
+management:
+  endpoints:
+    web:
+      base-path: / # endpoint上下文件
+      path-mapping: # 换别名 health-> healthcheck
+        health: healthcheck
+      exposure:
+        include: "*"

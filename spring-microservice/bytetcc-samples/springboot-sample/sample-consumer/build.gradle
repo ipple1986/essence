@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+group = 'bytetcc.springboot'
+version = '0.0.1-SNAPSHOT'
+
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web:2.0.4.RELEASE"){
+		exclude group: "com.fasterxml.jackson.core",module: "jackson-databind"
+		exclude group: "org.apache.logging.log4j", module: "log4j-to-slf4j"
+		exclude group: "org.apache.logging.log4j", module: "log4j-api"
+	}
+	implementation("org.bytesoft:bytetcc-supports-springboot:0.5.3"){
+		exclude group: "org.springframework.cloud",module: "mspring-cloud-zookeeper-core"
+		exclude group: "org.slf4j", module: "slf4j-log4j12"
+		exclude group: "log4j",module: "log4j"
+	}
+    implementation "mysql:mysql-connector-java:5.1.37"
+    testImplementation "junit:junit:4.12"
+}
+
+
+
+
+//org.apache.commons:commons-dbcp2:2.1.1

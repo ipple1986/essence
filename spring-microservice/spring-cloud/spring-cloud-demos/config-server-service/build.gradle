@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'//spring-boot-starter依赖管理
+dependencyManagement {//spring-cloud依赖声明
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR1"
+    }
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = "spring.microservice.configserver"
+version = "0.0.1-SNAPSHOT"
+description = "config-server-service"
+
+dependencies {
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.springframework.cloud:spring-cloud-config-server'
+}

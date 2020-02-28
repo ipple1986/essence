@@ -1,0 +1,15 @@
+/*pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}*/
+
+rootProject.name = 'spring-microservice'
+include 'spring-boot:springboot-in-action:readinglist'
+include "spring-boot:springboot-demos"
+include "spring-cloud:spring-cloud-config-repo"
+include "spring-cloud:spring-cloud-demos:user-service"
+include "spring-cloud:spring-cloud-demos:config-server-service"
+include 'bytetcc-samples:springboot-sample:sample-consumer'
+include 'bytetcc-samples:springboot-sample:sample-provider'
+
