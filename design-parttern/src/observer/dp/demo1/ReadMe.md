@@ -1,2 +1,0 @@
-one subject
-one observer

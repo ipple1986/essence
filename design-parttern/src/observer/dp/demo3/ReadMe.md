@@ -1,2 +1,0 @@
-multiple subject
-multiple observers
