@@ -1,6 +1,6 @@
 rootProject.name="study"
 include 'components'
-include "design-parttern"
+include "design-pattern"
 include "frontend-technology"
 include "java8"
 include "java-threads-concurrency-utilities"
