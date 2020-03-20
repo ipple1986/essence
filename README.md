@@ -2,8 +2,8 @@
 personality code
 
 ### 电子书笔记 汇总
-* [ZooKeeper Essentails](components/src/apacheZooKeeperEssentials.md )
-* [SpringBoot In Action](spring-microservice/spring-boot/springboot-in-action/SpringBootInAction.md)
+* ZooKeeper概要 [ZooKeeper Essentails](components/src/apacheZooKeeperEssentials.md )
+* 实战SpringBoot [SpringBoot In Action](spring-microservice/spring-boot/springboot-in-action/SpringBootInAction.md)
 * Gradle Essential
 * Redis Essential
 * Netty In Action

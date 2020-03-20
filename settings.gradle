@@ -1,4 +1,4 @@
-rootProject.name="study"
+rootProject.name="jim"
 include 'components'
 include "design-pattern"
 include "frontend-technology"
