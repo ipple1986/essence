@@ -1,4 +1,4 @@
-# OOD中解决复用而存在
+# DesignPattern为O解决OD中的复用而存在
 
 ## 创建类型（5）对象的创建，收集或描述
 ### 单例
@@ -28,3 +28,4 @@
 ### Visitor访问者
 ### Interpreter解释器
 ### Memento备忘
+代码示例 [demo code](https://github.com/ipple1986/jim/tree/master/design-pattern/src/main/java)
