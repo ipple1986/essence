@@ -4,6 +4,7 @@ include "servlet-filter-order"
 include "cross-origin-resource-share"
 include "loadbalance"
 include "shua"
+include "ssl"
 
 rootProject.children.each {
     it.buildFileName = it.name + ".gradle"

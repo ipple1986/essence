@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
 
 public class OrderItemsSupport extends HttpRequestSupport  implements  OrderItemsOpenable{
 
-    //public static final String REMOTE_HOST = "http://47.99.117.186:17008";
-    public static final String REMOTE_HOST = "http://120.41.41.104:27008";
-    private static final String ORDER_LIST_URL = "/api/order/getMyOrderList?status=2&page=1";
+    public static final String REMOTE_HOST = "http://47.99.117.186:17008";
+    //public static final String REMOTE_HOST = "http://120.41.41.104:27008";
+    private static final String ORDER_LIST_URL = "/api/order/getMyOrderList.html?page=1&status=2&ver=2.0.0.202003210&verify=MDAwMDAwMDAwMMbarGHJZ4uxmImynrCfqmWzqa1psGlgcg";
     private static final String ORDER_DETAIL_URL_FORMAT = "/api/order/getDetail?orderid=%s";
 
     private static final String TAOBAO_HOST_URL = "https://www.taobao.com";

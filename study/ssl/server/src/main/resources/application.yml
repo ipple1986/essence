@@ -1,0 +1,9 @@
+server:
+  port: 8100
+  servlet:
+    context-path: /server
+  ssl:
+    key-store: classpath:server2.jks
+    key-store-password: 123456
+    key-store-type: jks
+    key-alias: server

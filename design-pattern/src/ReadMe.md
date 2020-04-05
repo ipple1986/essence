@@ -1,4 +1,4 @@
-# DesignPattern为O解决OD中的复用而存在
+# DesignPattern为解决OOD中的复用而存在
 
 ## 创建类型（5）对象的创建，收集或描述
 ### 单例

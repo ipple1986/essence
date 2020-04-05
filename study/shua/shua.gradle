@@ -8,4 +8,8 @@ jar{
         attributes "Main-Class": "cn.jim.shua.ShuaMainEntry"
     }
 }
+dependencies{
+
+}
+
 
