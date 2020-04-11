@@ -1,0 +1,12 @@
+apply plugin:"java"
+archivesBaseName="sftp"
+group "cn.jim"
+version "1.0.1"
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+dependencies{
+    implementation 'org.apache.sshd:sshd-sftp:2.4.0'
+    implementation 'com.jcraft:jsch:0.1.55'
+}
+
+
