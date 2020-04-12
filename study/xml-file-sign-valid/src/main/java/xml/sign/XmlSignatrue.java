@@ -1,5 +1,6 @@
 package xml.sign;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.jcp.xml.dsig.internal.dom.DOMReference;
 import org.w3c.dom.*;
 
@@ -24,6 +25,7 @@ import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,8 +44,12 @@ public class XmlSignatrue {
         PublicKey publicKey = certificate.getPublicKey();
 
         //sign(keyStore,"xml-file-sign-valid/src/main/resources/web.xml","xml-file-sign-valid/src/main/resources/websigned.xml");
-        valid(publicKey,"xml-file-sign-valid/src/main/resources/websigned.xml");
+        //valid(publicKey,"xml-file-sign-valid/src/main/resources/websigned.xml");
         //new File("xml-file-sign-valid/src/main/resources/web.xml").delete();
+        // check sha256
+       /* MessageDigest messageDigest = DigestUtils.getSha256Digest();
+        messageDigest.update(ApacheOctetStreamData.inputStream2byte(new FileInputStream("xml-file-sign-valid/src/main/resources/web.xml")));
+        System.out.println(Base64.getEncoder().encodeToString(messageDigest.digest()));*/
     }
 
     public static void valid(PublicKey publicKey,String src) throws Exception {
