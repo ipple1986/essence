@@ -7,3 +7,5 @@ com.sun.org.apache.xml.internal.security.utils.resolver.implementations.Resolver
             FileInputStream inputStream = new FileInputStream(fileName); // 此文件流未关闭
 
 自定义 ApacheOcteStreamData/DOMURIDereferencer
+* DOMSignContext.setURIDereferencer(new DOMURIDereferencer());
+* DOMValidateContext.setURIDereferencer(new DOMURIDereferencer());

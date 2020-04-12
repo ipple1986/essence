@@ -42,8 +42,8 @@ public class XmlSignatrue {
         PublicKey publicKey = certificate.getPublicKey();
 
         //sign(keyStore,"xml-file-sign-valid/src/main/resources/web.xml","xml-file-sign-valid/src/main/resources/websigned.xml");
-        //new File("xml-file-sign-valid/src/main/resources/web.xml").delete();
         valid(publicKey,"xml-file-sign-valid/src/main/resources/websigned.xml");
+        //new File("xml-file-sign-valid/src/main/resources/web.xml").delete();
     }
 
     public static void valid(PublicKey publicKey,String src) throws Exception {
@@ -63,6 +63,7 @@ public class XmlSignatrue {
         XMLSignatureFactory xmlSignatureFactory2 = XMLSignatureFactory.getInstance("DOM");
         NodeList nl = document.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
         DOMValidateContext valContext = new DOMValidateContext(publicKey , nl.item(0));
+        valContext.setURIDereferencer(new DOMURIDereferencer());
 
         XMLSignature signature =xmlSignatureFactory2.unmarshalXMLSignature(valContext);
         System.out.println(signature.validate(valContext));
@@ -116,8 +117,6 @@ public class XmlSignatrue {
         FileOutputStream fileOutputStream = new FileOutputStream(new File(dst));
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer trans = tf.newTransformer();
-        trans.setOutputProperty(OutputKeys.INDENT, "yes");
-        trans.setOutputProperty(OutputKeys.CDATA_SECTION_ELEMENTS, "yes");
         trans.transform(new DOMSource(doc), new StreamResult(fileOutputStream));
     }
 }

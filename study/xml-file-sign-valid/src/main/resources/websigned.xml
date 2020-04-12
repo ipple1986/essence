@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
 
-    <SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="web.xml"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>L0kPNCyI9xYxEztshsxtKser8ojlSk55/nHg1sab6hc=</DigestValue></Reference></SignedInfo>
+
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="web.xml"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>L0kPNCyI9xYxEztshsxtKser8ojlSk55/nHg1sab6hc=</DigestValue></Reference></SignedInfo>
+
+
 
     <SignatureValue>XOMI5XyxclV/wFmEJ3v/NyIjnZr010/m6BHeZfV1K9ikj5f/K0IaH9RZPmJOUX/iaA/p99Vdb78S
 TzwCWQi0ggYWTzln5Bc5VaXsGtG7f59M26Bdcy4SNngScv92nY9xoUIefcqc5xcMJ3nYol5CwxjD
 onwM2zuXkqeo1syEQlHPDi7nRv18hu8NhyxM2CMpCpF8yXZ7DCqmUSiFLL+TSldM7azD9GChAsgV
 OZ50pA0Drx8mL2PO0Wbc9iQ83WmuXdxl+iBdrobAymw8cG8xyFG+u7ou9vB65/KUBMdgMQXwDudy
 6JqjLtjDzda3mJzRmdOrvurVUeYd/jxe1wGJKw==</SignatureValue>
-<KeyInfo>
-<X509Data>
-<X509IssuerSerial>
-<X509IssuerName>CN=org.test</X509IssuerName>
-<X509SerialNumber>1196197611</X509SerialNumber>
-</X509IssuerSerial>
-<X509SubjectName>CN=org.test</X509SubjectName>
-</X509Data>
-</KeyInfo>
-</Signature>
+
+    <KeyInfo><X509Data><X509IssuerSerial><X509IssuerName>CN=org.test</X509IssuerName><X509SerialNumber>1196197611</X509SerialNumber></X509IssuerSerial><X509SubjectName>CN=org.test</X509SubjectName></X509Data></KeyInfo></Signature>
