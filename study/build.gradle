@@ -1,7 +1,7 @@
 apply plugin: "java"
 archivesBaseName="study"
-group "cn.jim.study"
-version "1.0.1"
+group = "cn.jim.study"
+version = "1.0.1"
 
 allprojects {
 

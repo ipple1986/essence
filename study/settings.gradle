@@ -7,6 +7,8 @@ include "shua"
 include "ssl"
 include "apache-sshd-sftp"
 include "xml-file-sign-valid"
+include "file-lock"
+include "springdatajpa-task"
 
 rootProject.children.each {
     it.buildFileName = it.name + ".gradle"

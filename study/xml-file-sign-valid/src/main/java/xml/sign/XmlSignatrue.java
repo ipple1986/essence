@@ -1,7 +1,6 @@
 package xml.sign;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.jcp.xml.dsig.internal.dom.DOMReference;
+
 import org.w3c.dom.*;
 
 import javax.security.auth.x500.X500Principal;
@@ -34,6 +33,11 @@ import java.util.List;
 public class XmlSignatrue {
     private static char[] storePass = "123456".toCharArray();
     private static String aliasName = "test";
+        /*
+            KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+            kpg.initialize(2048);
+            KeyPair kp = kpg.generateKeyPair();
+        */
     public static void main(String[] args) throws Exception {
         // generate keypair
         // keytool -genkeypair -keyalg RSA -sigalg Sha256withRSA -alias test -keystore test.jks -storepass 123456 -keypass 123456 -dname CN=org.test
@@ -44,7 +48,7 @@ public class XmlSignatrue {
         PublicKey publicKey = certificate.getPublicKey();
 
         //sign(keyStore,"xml-file-sign-valid/src/main/resources/web.xml","xml-file-sign-valid/src/main/resources/websigned.xml");
-        //valid(publicKey,"xml-file-sign-valid/src/main/resources/websigned.xml");
+        valid(publicKey,"xml-file-sign-valid/src/main/resources/websigned.xml");
         //new File("xml-file-sign-valid/src/main/resources/web.xml").delete();
         // check sha256
        /* MessageDigest messageDigest = DigestUtils.getSha256Digest();
@@ -64,16 +68,21 @@ public class XmlSignatrue {
         Node referenceNode = document.getElementsByTagNameNS(XMLSignature.XMLNS, "Reference").item(0)
                 .getAttributes().item(0);
         String shortName = referenceNode.getNodeValue();
-        referenceNode.setNodeValue(file.getParentFile().toURI().toString().concat(shortName));
+        //referenceNode.setNodeValue(file.getParentFile().toURI().toString().concat(shortName));
+        String path = new File("xml-file-sign-valid/websigned.xml").toURI().toString();
+        System.out.println(new File("xml-file-sign-valid/websigned.xml").exists());
+        referenceNode.setNodeValue(path);
 
         XMLSignatureFactory xmlSignatureFactory2 = XMLSignatureFactory.getInstance("DOM");
         NodeList nl = document.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
         DOMValidateContext valContext = new DOMValidateContext(publicKey , nl.item(0));
         valContext.setURIDereferencer(new DOMURIDereferencer());
+        //valContext.setBaseURI("");
 
         XMLSignature signature =xmlSignatureFactory2.unmarshalXMLSignature(valContext);
         System.out.println(signature.validate(valContext));
     }
+
     public static void sign(KeyStore keyStore ,String src,String dst) throws Exception{
         Key key = keyStore.getKey(aliasName,storePass);
         PrivateKey privateKey = (PrivateKey)key;
@@ -97,7 +106,7 @@ public class XmlSignatrue {
         KeyInfoFactory kif = xmlSignatureFactory.getKeyInfoFactory();
         X509IssuerSerial x509IssuerSerial = kif.newX509IssuerSerial(issuerName, issuerNumber);
 
-        List x509DataList = new ArrayList<>(2);
+        List<Object> x509DataList = new ArrayList<>(2);
         x509DataList.add(x509IssuerSerial);
         x509DataList.add(subjectX500Principal.getName());
         X509Data x509Data = kif.newX509Data(x509DataList);
@@ -112,6 +121,8 @@ public class XmlSignatrue {
         Document doc = builder.newDocument();
         DOMSignContext dsc = new DOMSignContext(privateKey, doc);
         dsc.setURIDereferencer(new DOMURIDereferencer());
+        //dsc.setBaseURI("");
+
         // signature
         signature.sign(dsc);
         // cleanup reference uri
