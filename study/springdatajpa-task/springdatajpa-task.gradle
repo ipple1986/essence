@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.1.8.RELEASE'
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
 }
 
 apply plugin: 'java'
@@ -11,7 +11,9 @@ version = '0.0.1-SNAPSHOT'
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
 	implementation "org.springframework.boot:spring-boot-starter-web"
+	implementation "org.springframework.boot:spring-boot-starter-quartz"
 	runtimeOnly "com.h2database:h2"
+	implementation "org.apache.httpcomponents:httpclient:4.5.6"
 
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
 	testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc:2.0.3.RELEASE"

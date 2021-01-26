@@ -92,29 +92,67 @@ public class MySchedulingConfigurer implements SchedulingConfigurer,JpaRepositor
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         scheduledTaskRegistrar = taskRegistrar;
-        taskRegistrar.addCronTask(new CronTask(()->{
+        taskRegistrar.addCronTask(new MyCronTask("main",()->{
 
             boolean isChanged = fetchNewTask(null);
-            System.out.println(repositories.size() );
-            System.out.println(scheduledTaskRegistrar.getTriggerTaskList().size());
-            System.out.println(scheduledTaskRegistrar.getFixedDelayTaskList().size());
-            System.out.println(scheduledTaskRegistrar.getFixedRateTaskList().size());
+            //System.out.println(repositories.size() );
+            System.out.println(scheduledTaskRegistrar.getCronTaskList().size());
+            System.out.println(scheduledTaskRegistrar.getScheduledTasks().size());
+            //System.out.println(scheduledTaskRegistrar.getFixedDelayTaskList().size());
+            //System.out.println(scheduledTaskRegistrar.getFixedRateTaskList().size());
 
-            if(isChanged){
+            System.out.println("====start======");
+            scheduledTaskRegistrar.getScheduledTasks().forEach(task->{
+                if(task.getTask() instanceof MyTask){
+                    String taskName = (((MyTask) task.getTask()).taskName());
+                    System.out.println(taskName);
+                    if(!"main".equals(taskName)){
+                        boolean re = scheduledTaskRegistrar.getCronTaskList().remove(task.getTask());
+                        task.cancel();
+                        System.out.println(re);
+                    }
+                }
+            });
+            System.out.println("====end======");
+            MyCronTask  myCronTask =  new MyCronTask("bb",()->{
+                System.out.println("---");
+            },"0/10 * * * * ?");
+            scheduledTaskRegistrar.addCronTask(myCronTask);
+            scheduledTaskRegistrar.getScheduledTasks().add(scheduledTaskRegistrar.scheduleCronTask(myCronTask));
+            /*if(isChanged){
                 System.out.println(scheduledTaskRegistrar.getScheduledTasks().size());
-                scheduledTaskRegistrar.destroy();
+                //scheduledTaskRegistrar.destroy();
+                scheduledTaskRegistrar.getScheduledTasks().forEach(task->task.cancel());
 
                 scheduledTaskRegistrar.addCronTask(new CronTask(()->{
                     System.out.println("new --");
                 },new CronTrigger("0/5 * * * * ?")));
 
                 scheduledTaskRegistrar.afterPropertiesSet();
-            }
+            }*/
 
-            },new CronTrigger("0/5 * * * * ?")));
+            },"0/5 * * * * ?"));
     }
 
     public void setRepositories(JpaRepositories repositories) {
         this.repositories = repositories;
+    }
+    interface MyTask{
+       String taskName();
+    }
+    class MyCronTask extends CronTask implements MyTask{
+        private String taskName;
+        public MyCronTask(String taskName,Runnable runnable, String expression) {
+            this(runnable, expression);
+            this.taskName = taskName;
+        }
+        public MyCronTask(Runnable runnable, String expression) {
+            super(runnable, expression);
+        }
+
+        @Override
+        public String taskName() {
+            return taskName;
+        }
     }
 }

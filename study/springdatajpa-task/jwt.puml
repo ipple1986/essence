@@ -1,0 +1,43 @@
+@startuml
+hide footbox
+actor "API Consumer" as user
+box "API Provider" #LightBlue
+participant "TokenVerifierFilter" as filter
+participant "SignatureVerifierService" as svs
+participant "CachingSignatureVerifierService" as csvs
+
+participant "TokenVerifier" as tv
+participant "ManifestContext" as mc
+participant "Manifest" as m
+participant "ManifestReader" as mr
+end box
+participant "manifest.json" as json
+participant "manifest.json.sig" as jsonSign
+
+user -> filter: request Provider \n with JWT token
+filter -> svs: get TokenVerifier \n with jwt' <color:red>kid</color> field
+svs -> csvs: get TokenVerifier from \n CachingSignatureVerifierService
+
+csvs->mc: retrieve the <color:red>newest</color> ManifestContext regularly
+
+mc -> mr: use ManifestReader to get \nmanifest byte arrays and sign byte array
+
+mr <--> json : load manifest.json bytes
+mc<--mr: return  <color:red>byte[] raw</color>
+jsonSign <--> mr  : load manifest.json.sig bytes
+mc<--mr: return <color:red>byte[] sign</color>
+
+mc <-> m: parse Manifest object
+
+csvs -> tv : create TokenVerifier Object
+tv -> mc : use ManifestContext to \nget pubkey from <color:red>keys</color> field
+tv <--mc : create Key Object AND return
+csvs <--tv: use Key Object to \ncreate TokenVerifier AND return
+
+csvs --> svs : return TokenVerifier instance
+svs --> filter:return TokenVerifier instance
+
+filter-->filter: verify JWT token using TokenVerifier
+
+filter--> user: verify failed and \nfeedback to consumer
+@enduml

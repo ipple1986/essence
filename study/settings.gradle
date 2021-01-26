@@ -9,6 +9,8 @@ include "apache-sshd-sftp"
 include "xml-file-sign-valid"
 include "file-lock"
 include "springdatajpa-task"
+include "instrument"
+include "grpc-demo"
 
 rootProject.children.each {
     it.buildFileName = it.name + ".gradle"

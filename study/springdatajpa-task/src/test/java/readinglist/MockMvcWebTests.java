@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -19,6 +21,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@EnableAutoConfiguration(exclude = QuartzAutoConfiguration.class)
 @SpringBootTest//(classes ={ ReadingListApplication.class })@SpringApplicationConfiguration 已不支持
 @WebAppConfiguration // 让SpringJUnit4ClassRunner生成WebApplicationContext，而不是ApplicationContext类
 public class MockMvcWebTests {

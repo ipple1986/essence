@@ -1,0 +1,11 @@
+javax.xml.crypto.dsig.XMLSignature#sign
+org.jcp.xml.dsig.internal.dom.DOMXMLSignature#digestReference
+org.jcp.xml.dsig.internal.dom.DOMReference#digest
+org.jcp.xml.dsig.internal.dom.DOMURIDereferencer#dereference
+com.sun.org.apache.xml.internal.security.utils.resolver.ResourceResolver#resolve(org.w3c.dom.Attr, java.lang.String, boolean)
+com.sun.org.apache.xml.internal.security.utils.resolver.implementations.ResolverLocalFilesystem#engineResolveURI
+            FileInputStream inputStream = new FileInputStream(fileName); // 此文件流未关闭
+
+自定义 ApacheOcteStreamData/DOMURIDereferencer
+* DOMSignContext.setURIDereferencer(new DOMURIDereferencer());
+* DOMValidateContext.setURIDereferencer(new DOMURIDereferencer());
